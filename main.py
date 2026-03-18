@@ -1,5 +1,8 @@
 import os
 import shutil
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modules'))
+
 from torchsampler import ImbalancedDatasetSampler
 
 import torch
@@ -151,7 +154,7 @@ def get_ham1000():
     data_aug_rate = [15,10,5,50,0,40,5]
     for i in range(7):
         if data_aug_rate[i]:
-            df_train=df_train.append([df_train.loc[df_train['cell_type_idx'] == i,:]]*(data_aug_rate[i]-1), ignore_index=True)
+            df_train = pd.concat([df_train] + [df_train.loc[df_train['cell_type_idx'] == i, :]] * (data_aug_rate[i]-1), ignore_index=True)
     #print(df_train['cell_type'].value_counts())
     df_train, df_val = train_test_split(df_train, test_size=0.2)
     df_train = df_train.reset_index()

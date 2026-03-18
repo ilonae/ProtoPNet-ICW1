@@ -4,3 +4,11 @@ checkpoint/**
 __pycache__/**
 saved_models/**
 
+# large reference PDFs
+supp_this_looks_like_that.pdf
+
+# saved models and data
+*.pyc
+.DS_Store
+venv/
+
